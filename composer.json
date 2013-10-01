@@ -1,0 +1,22 @@
+{
+    "name": "rickard2/luhnar-validator",
+    "description": "Symfony 2 validator to validate social security numbers",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rickard Andersson",
+            "email": "rickard@0x539.se"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "rickard2/luhnar": "1.*",
+        "symfony/validator": "2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Rickard2\\LuhnarValidator\\": ""
+        }
+    },
+    "target-dir": "Rickard2/LuhnarValidator"
+}
