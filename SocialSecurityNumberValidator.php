@@ -23,8 +23,12 @@ class SocialSecurityNumberValidator extends ConstraintValidator
 
         $validator = new Validator();
 
-        if (!$validator->validate($value, $constraint->countryCode)) {
-            $this->context->addViolation($constraint->message, array('%string%' => $value));
+        try {
+            if (!$validator->validate($value, $constraint->countryCode)) {
+                $this->context->addViolation($constraint->message, array('%string%' => $value));
+            }
+        } catch (\Exception $e) {
+
         }
     }
 }
