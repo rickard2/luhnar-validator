@@ -3,7 +3,7 @@
 use Rickard2\LuhnarValidator\SocialSecurityNumber;
 use Rickard2\LuhnarValidator\SocialSecurityNumberValidator;
 
-class SocialSecurityNumberValidatorTest extends PHPUnit_FrameWork_TestCase
+class SocialSecurityNumberValidatorTest extends PHPUnit_Framework_TestCase
 {
     protected $context;
 
