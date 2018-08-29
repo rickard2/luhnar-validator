@@ -5,6 +5,10 @@ namespace Rickard2\LuhnarValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\MissingOptionsException;
 
+/**
+ * @Annotation
+ * @Target({"PROPERTY", "METHOD", "ANNOTATION"})
+ */
 class SocialSecurityNumber extends Constraint
 {
 
