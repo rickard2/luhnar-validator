@@ -11,10 +11,10 @@
     "minimum-stability": "stable",
     "require": {
         "rickard2/luhnar": "2.*",
-        "symfony/validator": "~2.0"
+        "symfony/validator": "~3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "^4.4.2"
     },
     "autoload": {
         "psr-0": {

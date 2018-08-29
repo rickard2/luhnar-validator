@@ -14,7 +14,7 @@ class SocialSecurityNumberValidatorTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->context   = $this->getMock('Symfony\Component\Validator\ExecutionContext', array(), array(), '', false);
+        $this->context   = $this->getMock('Symfony\Component\Validator\Context\ExecutionContextInterface', array(), array(), '', false);
         $this->validator = new SocialSecurityNumberValidator();
         $this->validator->initialize($this->context);
     }
