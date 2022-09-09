@@ -1,27 +1,28 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use Rickard2\LuhnarValidator\SocialSecurityNumber;
 use Rickard2\LuhnarValidator\SocialSecurityNumberValidator;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Exception\MissingOptionsException;
 
-class SocialSecurityNumberValidatorTest extends PHPUnit_Framework_TestCase
+class SocialSecurityNumberValidatorTest extends TestCase
 {
-    protected $context;
+    protected ExecutionContextInterface $context;
+    protected SocialSecurityNumberValidator $validator;
 
-    /**
-     * @var SocialSecurityNumberValidator
-     */
-    protected $validator;
-
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->context   = $this->getMock('Symfony\Component\Validator\Context\ExecutionContextInterface', array(), array(), '', false);
+        $this->context   = $this->getMockBuilder(ExecutionContextInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
         $this->validator = new SocialSecurityNumberValidator();
         $this->validator->initialize($this->context);
     }
 
     public function testValid()
     {
-        $constraint = new SocialSecurityNumber(array('countryCode' => 'se'));
+        $constraint = new SocialSecurityNumber(['countryCode' => 'se']);
 
         $this->context->expects($this->never())->method('addViolation');
 
@@ -30,18 +31,16 @@ class SocialSecurityNumberValidatorTest extends PHPUnit_Framework_TestCase
 
     public function testInvalid()
     {
-        $constraint = new SocialSecurityNumber(array('countryCode' => 'se'));
+        $constraint = new SocialSecurityNumber(['countryCode' => 'se']);
 
         $this->context->expects($this->once())->method('addViolation');
 
         $this->validator->validate('9909193767', $constraint);
     }
 
-    /**
-     * @expectedException Symfony\Component\Validator\Exception\MissingOptionsException
-     */
     public function testRequiresCountry()
     {
-        new SocialSecurityNumber(array());
+        $this->expectException(MissingOptionsException::class);
+        new SocialSecurityNumber([]);
     }
 }
